@@ -31,8 +31,3 @@ The app is built using **HTML, CSS, and JavaScript**, demonstrating **DOM manipu
 
 
 
----
-
-## Author
-
-**Sowmiya Ravichandran**

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BOM Demo</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f0f8ff;
+      padding: 30px;
+      text-align: center;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #0078D7;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #005bb5;
+      transform: scale(1.05);
+    }
+    .info {
+      margin-top: 20px;
+      text-align: left;
+      display: inline-block;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h2> Browser Object Model Demo</h2>
+
+  <button onclick="showAlert()">Show Alert</button>
+  <button onclick="askConfirm()">Show Confirm</button>
+  <button onclick="askPrompt()">Show Prompt</button>
+  <button onclick="showLocation()">Show Location</button>
+  <button onclick="showNavigator()">Show Navigator</button>
+  <button onclick="showScreen()">Show Screen Info</button>
+
+  <div class="info" id="infoBox"></div>
+
+  <script>
+    const infoBox = document.getElementById("infoBox");
+
+    // 1. Alert
+    function showAlert() {
+      alert("Hello Sowmiya! Welcome to BOM demo ");
+    }
+
+    // 2. Confirm
+    function askConfirm() {
+      let result = confirm("Are you 18+?");
+      if(result) {
+        infoBox.innerHTML = "<b>Confirm:</b> You are 18+ ";
+      } else {
+        infoBox.innerHTML = "<b>Confirm:</b> You are under 18 ";
+      }
+    }
+
+    // 3. Prompt
+    function askPrompt() {
+      let name = prompt("Enter your name:");
+      if(name) {
+        infoBox.innerHTML = `<b>Prompt:</b> Hello ${name}! `;
+      } else {
+        infoBox.innerHTML = "<b>Prompt:</b> You didn't enter a name.";
+      }
+    }
+
+    // 4. Location
+    function showLocation() {
+      infoBox.innerHTML = `
+        <b>Location Info:</b><br>
+        Full URL: ${location.href}<br>
+        Host: ${location.host}<br>
+        Pathname: ${location.pathname}
+      `;
+      // Optional: redirect example
+      // location.href = "https://www.google.com";
+    }
+
+    // 5. Navigator
+    function showNavigator() {
+      infoBox.innerHTML = `
+        <b>Navigator Info:</b><br>
+        Browser: ${navigator.appName}<br>
+        User Agent: ${navigator.userAgent}<br>
+        Platform: ${navigator.platform}<br>
+        Language: ${navigator.language}
+      `;
+    }
+
+    // 6. Screen
+    function showScreen() {
+      infoBox.innerHTML = `
+        <b>Screen Info:</b><br>
+        Width: ${screen.width}px<br>
+        Height: ${screen.height}px<br>
+        Available Width: ${screen.availWidth}px<br>
+        Available Height: ${screen.availHeight}px
+      `;
+    }
+  </script>
+
+</body>
+</html>

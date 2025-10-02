@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Styled User Card Generator</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #a1c4fd, #c2e9fb);
+      padding: 30px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #222;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    }
+
+    input {
+      padding: 10px;
+      margin: 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 220px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #0078D7;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease;
+      font-size: 14px;
+    }
+    button:hover {
+      background: #005bb5;
+      transform: scale(1.05);
+    }
+
+    #cardContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 30px;
+      justify-content: center;
+    }
+
+    .card {
+      background: white;
+      border: 2px solid #0078D7;
+      border-radius: 12px;
+      padding: 20px;
+      width: 280px;
+      text-align: left;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.25);
+    }
+
+    .card p {
+      margin: 8px 0;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .highlight {
+      background: #fff5b1 !important;
+    }
+
+    .action-btns {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+    }
+    .action-btns button {
+      flex: 1;
+      font-size: 12px;
+      padding: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2> Stylish User Card Generator </h2>
+
+  <!-- Input fields -->
+  <input type="text" id="nameInput" placeholder="Enter Name">
+  <input type="number" id="ageInput" placeholder="Enter Age">
+  <input type="email" id="emailInput" placeholder="Enter Email">
+  <input type="text" id="cityInput" placeholder="Enter City">
+  <button onclick="createCard()">Add User</button>
+
+  <!-- Container to hold cards -->
+  <div id="cardContainer"></div>
+
+  <script>
+    function createCard() {
+      // Get values
+      let name = document.getElementById("nameInput").value;
+      let age = document.getElementById("ageInput").value;
+      let email = document.getElementById("emailInput").value;
+      let city = document.getElementById("cityInput").value;
+      let date = new Date().toLocaleDateString();
+
+      // Create card
+      let card = document.createElement("div");
+      card.classList.add("card");
+
+      // Add card content
+      card.innerHTML = `
+        <p><b> Name:</b> ${name}</p>
+        <p><b> Age:</b> ${age}</p>
+        <p><b> Email:</b> ${email}</p>
+        <p><b> City:</b> ${city}</p>
+        <p><b> Joined:</b> ${date}</p>
+        <div class="action-btns">
+          <button class="highlightBtn">Highlight</button>
+          <button class="deleteBtn">Delete</button>
+        </div>
+      `;
+
+      // Highlight button
+      let highlightBtn = card.querySelector(".highlightBtn");
+      highlightBtn.addEventListener("click", () => {
+        card.classList.toggle("highlight");
+      });
+
+      // Delete button
+      let deleteBtn = card.querySelector(".deleteBtn");
+      deleteBtn.addEventListener("click", () => {
+        card.remove();
+      });
+
+      // Set custom attribute
+      card.setAttribute("data-username", name);
+
+      // Append card
+      document.getElementById("cardContainer").appendChild(card);
+
+      // Clear inputs
+      document.getElementById("nameInput").value = "";
+      document.getElementById("ageInput").value = "";
+      document.getElementById("emailInput").value = "";
+      document.getElementById("cityInput").value = "";
+    }
+  </script>
+
+</body>
+</html>
